@@ -16,14 +16,11 @@ resource "aws_instance" "instance-ec2" {
 		nohup busybox httpd -f -p ${var.server_port} &
 		EOF
 
-/*
-
 	tags = {
 		Name = "${var.server_name}-${var.server_env}"
 		Environment = var.server_env
 		PlatformType = "test"
 	}
-*/
 
 }
 
