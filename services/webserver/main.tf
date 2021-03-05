@@ -4,6 +4,8 @@ provider "aws" {
 
 
 resource "aws_instance" "instance-ec2" {
+
+	
 	ami = "ami-042e8287309f5df03"
 	instance_type = "t2.micro"
 	vpc_security_group_ids = [aws_security_group.instance-sg.id]
@@ -14,15 +16,19 @@ resource "aws_instance" "instance-ec2" {
 		nohup busybox httpd -f -p ${var.server_port} &
 		EOF
 
-	tags = {
-		Name = "terraform-example-${var.server_env}"
+/*
+tags = {
+		Name = "${var.server_name}-${var.server_env}"
 		Environment = var.server_env
 		PlatformType = "test"
 	}
+
+*/
+
 }
 
 resource "aws_security_group" "instance-sg" {
-	name = "terraform-example-sg-${var.server_env}"
+	name = "sg-${var.server_name}-${var.server_env}"
 	ingress {
 		from_port = var.server_port
 		to_port = var.server_port
