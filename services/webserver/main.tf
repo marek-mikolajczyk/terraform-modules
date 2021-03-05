@@ -17,7 +17,7 @@ resource "aws_instance" "instance-ec2" {
 	tags = {
 		Name = "terraform-example-${var.server_env}"
 		Environment = var.server_env
-		PlatformType= "test"
+		PlatformType = "test"
 	}
 }
 
