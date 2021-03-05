@@ -16,17 +16,19 @@ resource "aws_instance" "instance-ec2" {
 		nohup busybox httpd -f -p ${var.server_port} &
 		EOF
 
-tags = {
+/*
+
+	tags = {
 		Name = "${var.server_name}-${var.server_env}"
 		Environment = var.server_env
 		PlatformType = "test"
 	}
-
+*/
 
 }
 
 resource "aws_security_group" "instance-sg" {
-	name = "sg-${var.server_name}-${var.server_env}"
+	name = "${var.server_name}-${var.server_env}"
 	ingress {
 		from_port = var.server_port
 		to_port = var.server_port
